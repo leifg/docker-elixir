@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:3.5
 MAINTAINER Leif Gensert <leif@leif.io>
 
 ARG ERLANG_VERSION=19.2
