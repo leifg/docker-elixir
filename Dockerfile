@@ -1,7 +1,7 @@
 FROM alpine:3.5
 MAINTAINER Leif Gensert <leif@leif.io>
 
-ARG ERLANG_VERSION=19.2
+ARG ERLANG_VERSION=19.2.1
 
 LABEL name="erlang" version=$ERLANG_VERSION
 
@@ -9,7 +9,7 @@ LABEL name="erlang" version=$ERLANG_VERSION
 
 ARG DISABLED_APPS='megaco wx debugger jinterface orber reltool observer gs et'
 ARG ERLANG_DOWNLOAD_URL="https://github.com/erlang/otp/archive/OTP-${ERLANG_VERSION}.tar.gz"
-ARG ERLANG_DOWNLOAD_SHA256="c6adbc82a45baa49bf9f5b524089da480dd27113c51b3d147aeb196fdb90516b"
+ARG ERLANG_DOWNLOAD_SHA256="7b41ef0ccada6f911f5530a90c325c1bb89747a67ab29d71b881ba432668d393"
 
 RUN set -xe \
     && apk --update add --virtual erlang-build-dependencies curl ca-certificates build-base autoconf perl ncurses-dev openssl-dev unixodbc-dev tar \
