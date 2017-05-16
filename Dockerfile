@@ -15,7 +15,7 @@ RUN set -xe \
     && apk --update add --virtual erlang-build-dependencies curl ca-certificates build-base autoconf perl ncurses-dev openssl-dev unixodbc-dev tar \
     && apk --update add ncurses openssl unixodbc \
     && curl -fSL -o otp-src.tar.gz "$ERLANG_DOWNLOAD_URL" \
-    && echo "$ERLANG_DOWNLOAD_SHA256  otp-src.tar.gz" | sha256sum -c - \
+    && echo "$ERLANG_DOWNLOAD_SHA256 otp-src.tar.gz" | sha256sum -c - \
     && mkdir -p /usr/src/otp-src \
     && tar -xzf otp-src.tar.gz -C /usr/src/otp-src --strip-components=1 \
     && rm otp-src.tar.gz \
