@@ -4,7 +4,7 @@ MAINTAINER Leif Gensert <leif@leif.io>
 # install erlang
 
 ARG DISABLED_APPS='megaco wx debugger jinterface orber reltool observer gs et'
-ARG ERLANG_TAG=OTP-19.3.5
+ARG ERLANG_TAG=OTP-19.3.6
 LABEL erlang_version=$ERLANG_TAG erlang_disabled_apps=$DISABLED_APPS
 
 RUN apk --update add --virtual run-dependencies ca-certificates ncurses openssl unixodbc
