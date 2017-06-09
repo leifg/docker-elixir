@@ -4,7 +4,7 @@ MAINTAINER Leif Gensert <leif@leif.io>
 # install erlang
 
 ARG DISABLED_APPS='megaco wx debugger jinterface orber reltool observer gs et'
-ARG ERLANG_TAG=master
+ARG ERLANG_TAG=OTP-19.3.5
 LABEL erlang_version=$ERLANG_TAG erlang_disabled_apps=$DISABLED_APPS
 
 RUN apk --update add --virtual run-dependencies ca-certificates ncurses openssl unixodbc
@@ -39,7 +39,7 @@ RUN set -xe \
 
 # Install Elixir
 
-ARG ELIXIR_TAG=master
+ARG ELIXIR_TAG=v1.4.4
 LABEL exlixir_version=$ELIXIR_TAG
 
 RUN apk --update add --virtual elixir-build-dependencies git build-base \
