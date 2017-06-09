@@ -1,13 +1,15 @@
 FROM alpine:3.5
 MAINTAINER Leif Gensert <leif@leif.io>
 
-# install erlang
-
 ARG DISABLED_APPS='megaco wx debugger jinterface orber reltool observer gs et'
 ARG ERLANG_TAG=master
-LABEL erlang_version=$ERLANG_TAG erlang_disabled_apps=$DISABLED_APPS
+ARG ELIXIR_TAG=master
+
+LABEL erlang_version=$ERLANG_TAG erlang_disabled_apps=$DISABLED_APPS elixir_version=$ELIXIR_TAG
 
 RUN apk --update add --virtual run-dependencies ca-certificates ncurses openssl unixodbc
+
+# install erlang
 
 RUN set -xe \
     && apk --update add --virtual erlang-build-dependencies git ca-certificates build-base autoconf perl ncurses-dev openssl-dev unixodbc-dev tar \
@@ -35,12 +37,9 @@ RUN set -xe \
     && rm -rf \
       /opt \
       /var/cache/apk/* \
-      /tmp/* \
+      /tmp/*
 
 # Install Elixir
-
-ARG ELIXIR_TAG=master
-LABEL exlixir_version=$ELIXIR_TAG
 
 RUN apk --update add --virtual elixir-build-dependencies git build-base \
     && cd /tmp \
@@ -49,7 +48,8 @@ RUN apk --update add --virtual elixir-build-dependencies git build-base \
     && git checkout $ELIXIR_TAG \
     && echo "ELIXIR_BUILD=$(git rev-parse HEAD)" >> /info.txt \
     && echo "ELIXIR_VERSION=$(cat VERSION)" >> /info.txt  \
-    && make clean test \
+    && make compile \
+    && rm -rf .git \
     && make install \
     && apk del elixir-build-dependencies \
     && rm -rf \
