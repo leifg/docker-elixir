@@ -18,7 +18,7 @@ RUN set -xe \
     && cd otp \
     && git checkout $ERLANG_TAG \
     && echo "ERLANG_BUILD=$(git rev-parse HEAD)" >> /info.txt \
-    && echo "ERLANG_VERSION=$(cat VERSION)" >> /info.txt  \
+    && echo "ERLANG_VERSION=$(cat OTP_VERSION)" >> /info.txt  \
     && for lib in ${DISABLED_APPS} ; do touch lib/${lib}/SKIP ; done \
     && ./otp_build autoconf \
     && ./configure \
