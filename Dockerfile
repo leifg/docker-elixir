@@ -3,7 +3,7 @@ MAINTAINER Leif Gensert <leif@leif.io>
 
 ARG DISABLED_APPS='megaco wx debugger jinterface orber reltool observer gs et'
 ARG ERLANG_TAG=OTP-19.3.6
-ARG ELIXIR_TAG=v1.4.4
+ARG ELIXIR_TAG=v1.4.5
 
 LABEL erlang_version=$ERLANG_TAG erlang_disabled_apps=$DISABLED_APPS elixir_version=$ELIXIR_TAG
 
