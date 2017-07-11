@@ -48,7 +48,7 @@ RUN apk --update add --virtual elixir-build-dependencies git build-base \
     && git checkout $ELIXIR_TAG \
     && echo "ELIXIR_BUILD=$(git rev-parse HEAD)" >> /info.txt \
     && echo "ELIXIR_VERSION=$(cat VERSION)" >> /info.txt  \
-    && make compile \
+    && make -j$(getconf _NPROCESSORS_ONLN) compile \
     && rm -rf .git \
     && make install \
     && apk del elixir-build-dependencies \
