@@ -14,9 +14,8 @@ RUN apk --update add --virtual run-dependencies ca-certificates ncurses openssl 
 RUN set -xe \
     && apk --update add --virtual erlang-build-dependencies git ca-certificates build-base autoconf perl ncurses-dev openssl-dev unixodbc-dev tar \
     && cd /tmp \
-    && git clone https://github.com/erlang/otp.git \
+    && git clone --branch $ERLANG_TAG --depth=1 --single-branch https://github.com/erlang/otp.git \
     && cd otp \
-    && git checkout $ERLANG_TAG \
     && echo "ERLANG_BUILD=$(git rev-parse HEAD)" >> /info.txt \
     && echo "ERLANG_VERSION=$(cat OTP_VERSION)" >> /info.txt  \
     && for lib in ${DISABLED_APPS} ; do touch lib/${lib}/SKIP ; done \
@@ -43,9 +42,8 @@ RUN set -xe \
 
 RUN apk --update add --virtual elixir-build-dependencies git build-base \
     && cd /tmp \
-    && git clone https://github.com/elixir-lang/elixir.git \
+    && git clone --branch $ELIXIR_TAG --depth=1 --single-branch https://github.com/elixir-lang/elixir.git \
     && cd elixir \
-    && git checkout $ELIXIR_TAG \
     && echo "ELIXIR_BUILD=$(git rev-parse HEAD)" >> /info.txt \
     && echo "ELIXIR_VERSION=$(cat VERSION)" >> /info.txt  \
     && make -j$(getconf _NPROCESSORS_ONLN) compile \
