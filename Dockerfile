@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.6
 MAINTAINER Leif Gensert <leif@leif.io>
 
 ARG DISABLED_APPS='megaco wx debugger jinterface orber reltool observer gs et'
