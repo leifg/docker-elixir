@@ -30,7 +30,13 @@ RUN set -xe \
         --disable-hipe \
     && make -j$(getconf _NPROCESSORS_ONLN) \
     && make install \
-    && find /usr/local -name examples | xargs rm -rf \
+    && find /usr/local -regex '/usr/local/lib/erlang/\(lib/\|erts-\).*/\(man\|doc\|src\|obj\|c_src\|emacs\|info\|examples\)' | xargs rm -rf \
+    && rm -rf \
+      /usr/local/lib/erlang/erts*/lib/lib*.a \
+      /usr/local/lib/erlang/usr/lib/lib*.a \
+      /usr/local/lib/erlang/lib/*/lib/lib*.a \
+    && scanelf --nobanner -E ET_EXEC -BF '%F' --recursive /usr/local | xargs -r strip --strip-all \
+    && scanelf --nobanner -E ET_DYN -BF '%F' --recursive /usr/local | xargs -r strip --strip-unneeded \
     && apk del erlang-build-dependencies \
     && ls -d /usr/local/lib/erlang/lib/*/src | xargs rm -rf \
     && rm -rf \
