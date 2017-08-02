@@ -9,7 +9,7 @@ LABEL erlang_version=$ERLANG_TAG erlang_disabled_apps=$DISABLED_APPS elixir_vers
 
 RUN apk --update add --virtual run-dependencies ca-certificates ncurses openssl unixodbc
 
-# install erlang
+# Install Erlang
 
 RUN set -xe \
     && apk --update add --virtual erlang-build-dependencies git ca-certificates build-base autoconf perl ncurses-dev openssl-dev unixodbc-dev tar \
