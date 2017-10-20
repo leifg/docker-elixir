@@ -1,11 +1,10 @@
 FROM alpine:3.6
-MAINTAINER Leif Gensert <leif@leif.io>
 
 ARG DISABLED_APPS='megaco wx debugger jinterface orber reltool observer gs et'
 ARG ERLANG_TAG=master
 ARG ELIXIR_TAG=master
 
-LABEL erlang_version=$ERLANG_TAG erlang_disabled_apps=$DISABLED_APPS elixir_version=$ELIXIR_TAG
+LABEL erlang_version=$ERLANG_TAG erlang_disabled_apps=$DISABLED_APPS elixir_version=$ELIXIR_TAG maintainer="leif@leif.io"
 
 RUN apk --update add --virtual run-dependencies ca-certificates ncurses openssl unixodbc
 
