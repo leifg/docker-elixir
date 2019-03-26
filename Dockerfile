@@ -1,7 +1,7 @@
 FROM alpine:3.9
 
 ARG DISABLED_APPS='megaco wx debugger jinterface orber reltool observer gs et'
-ARG ERLANG_TAG=OTP-21.3
+ARG ERLANG_TAG=OTP-21.3.2
 ARG ELIXIR_TAG=v1.8.1
 
 LABEL erlang_version=$ERLANG_TAG erlang_disabled_apps=$DISABLED_APPS elixir_version=$ELIXIR_TAG maintainer="leif@leif.io"
