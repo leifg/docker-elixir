@@ -1,4 +1,4 @@
-FROM alpine:3.12.0
+FROM alpine:3.14.0
 
 ARG DISABLED_APPS='megaco wx debugger jinterface orber reltool observer gs et'
 ARG ERLANG_TAG=master
